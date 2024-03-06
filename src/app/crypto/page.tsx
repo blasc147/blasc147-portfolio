@@ -1,29 +1,10 @@
 'use client'
-import { z } from 'zod'
 import { UserNav } from '@/components/pages/tasks/components/user-nav'
 import { DataTable } from '@/components/pages/tasks/components/data-table'
 import { columns } from '@/components/pages/tasks/components/columns'
 import { useCurrenciesQuery } from '@/hooks/useQuery/useCurrenciesQuery'
 import { Suspense } from 'react'
-
-// SkeletonTable.js
-export const SkeletonTable = () => {
-  return (
-    <div className='animate-pulse'>
-      <div className='rounded bg-gray-300 h-6 w-3/4 mb-4'></div>
-      <div className='space-y-2'>
-        {[...Array(10)].map((_, index) => (
-          <div key={index} className='flex space-x-4'>
-            <div className='rounded bg-gray-300 h-6 w-1/5'></div>
-            <div className='rounded bg-gray-300 h-6 w-2/5'></div>
-            <div className='rounded bg-gray-300 h-6 w-1/4'></div>
-            <div className='rounded bg-gray-300 h-6 w-1/6'></div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+import { SkeletonTable } from '@/components/pages/tasks/components/skeleton-section'
 
 export const CryptoTable = () => {
   const { data: cryptoData, error } = useCurrenciesQuery()
