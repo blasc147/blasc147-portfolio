@@ -9,10 +9,10 @@ import { ThemeToggle } from '@/components/theme-toggle-dropdown'
 export function SiteHeader() {
   return (
     <header className='sticky inset-x-0 top-0 z-50 my-0 w-full bg-background/80 backdrop-blur-md transition-colors md:my-10'>
-      <div className='container flex h-16 items-center space-x-5 sm:justify-between md:h-20 md:space-x-16'>
+      <div className='container flex h-12 items-center space-x-5 sm:justify-between md:h-12 md:space-x-16'>
         <Link
           href='/'
-          className='flex items-center space-x-2 md:justify-center '
+          className='flex items-center space-x-2 md:justify-center w-36 '
         >
           <Icons.logo className='h-4 md:h-5' />
           <span className='sr-only'>{siteConfig.name}</span>

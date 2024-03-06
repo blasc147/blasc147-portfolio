@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchCurrencies } from '../../services/useCurrencies'
 import { ApiResponse } from '../../interfaces/currencies'
+import { fetchCurrencies } from '@/services/useCurrencies'
 
 export const useCurrenciesQuery = () => {
   return useQuery<ApiResponse, Error>({
     queryKey: ['currencies'],
-    queryFn: fetchCurrencies,
-    staleTime: 10000
+    queryFn: () => fetchCurrencies(),
+    suspense: true
+    //staleTime: 5 * 1000
   })
 }

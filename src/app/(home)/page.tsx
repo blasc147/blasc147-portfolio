@@ -6,6 +6,7 @@ import { Text } from '@/components/ui/text'
 import { buttonVariants } from '@/components/ui/button'
 import { compareDesc, format, parseISO } from 'date-fns'
 import { cn } from '@/lib/utils'
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 
 const works = [
   {
@@ -13,7 +14,7 @@ const works = [
     title: 'Kennek',
     slug: 'https://kennek.io/',
     date: '2021-01-01',
-    thumbnail: '/static/work/thumb-nyt.jpg',
+    thumbnail: '/static/works/kennek.png',
     description:
       'kennek enables every lender to operate smartly and efficiently. Its built by former lenders, and offered as a SaaS. '
   },
@@ -22,7 +23,7 @@ const works = [
     title: 'Mate UI',
     slug: 'https://mate-ui.vercel.app/',
     date: '2023-01-01',
-    thumbnail: '/static/work/thumb-ny.jpg',
+    thumbnail: '/static/works/mate-ui.png',
     description:
       'Components library using Tailwind CSS , React, cva, Typescript and Storybook.'
   },
@@ -31,7 +32,7 @@ const works = [
     title: 'ECOM Chaco',
     slug: '/works/the-guardian',
     date: '2019-01-01',
-    thumbnail: '/static/work/thumb-guardian.jpg',
+    thumbnail: '/static/works/ecom.png',
     description: 'Local software factory in Chaco, Argentina.'
   },
   {
@@ -39,7 +40,7 @@ const works = [
     title: 'Clinical History',
     slug: 'https://hc.salud.chaco.gob.ar/',
     date: '2022-01-01',
-    thumbnail: '/static/work/thumb-wp.jpg',
+    thumbnail: '/static/works/hcd.png',
     description:
       'A web app to manage clinical history of patients, rooms, emergency care, etc.'
   }
@@ -70,35 +71,49 @@ export default function Page() {
 
         <div className='grid gap-10 lg:grid-cols-2 xl:gap-20'>
           {works.map((work, index) => (
-            <article
-              key={work._id}
-              className={index % 3 === 0 ? 'col-span-2' : 'col-span-1'}
-            >
-              <Link href={work.slug} className='group relative'>
-                <figure className='relative aspect-video overflow-hidden rounded-xl transition-opacity duration-300 group-hover:opacity-60'>
+            <CardContainer key={work._id} className='col-span-1 inter-var'>
+              <CardBody className='bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  '>
+                <CardItem
+                  translateZ='50'
+                  className='text-xl font-bold text-neutral-600 dark:text-white'
+                >
+                  {work.title}
+                </CardItem>
+                <CardItem
+                  as='p'
+                  translateZ='60'
+                  className='text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300'
+                >
+                  {' '}
+                  <time
+                    dateTime={work.date}
+                    className='mb-2 block text-xs text-muted-foreground'
+                  >
+                    {format(parseISO(work.date), 'yyyy')}
+                  </time>
+                  {work?.description}
+                </CardItem>
+                <CardItem translateZ='100' className='w-full mt-4'>
                   <Image
                     src={work.thumbnail || '/static/work/thumb-default.jpg'}
-                    fill={true}
                     priority={true}
+                    width={500}
+                    height={300}
                     alt={work.title}
-                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw'
-                    className='bg-muted object-cover'
+                    className='h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl'
                   />
-                </figure>
-                <h3 className='mt-8 font-semibold uppercase'>{work.title}</h3>
-                <time
-                  dateTime={work.date}
-                  className='mb-2 block text-xs text-muted-foreground'
-                >
-                  {format(parseISO(work.date), 'yyyy')}
-                </time>
-              </Link>
-              {work.description && (
-                <p className='mt-4 max-w-md text-muted-foreground'>
-                  {work.description}
-                </p>
-              )}
-            </article>
+                </CardItem>
+                <div className='flex justify-between items-center mt-20'>
+                  <CardItem
+                    translateZ={20}
+                    as='button'
+                    className='px-4 py-2 rounded-xl text-xs font-normal dark:text-white'
+                  >
+                    Try now →
+                  </CardItem>
+                </div>
+              </CardBody>
+            </CardContainer>
           ))}
         </div>
       </section>
