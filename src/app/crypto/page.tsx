@@ -1,16 +1,7 @@
-'use client'
 import { UserNav } from '@/components/pages/tasks/components/user-nav'
-import { DataTable } from '@/components/pages/tasks/components/data-table'
-import { columns } from '@/components/pages/tasks/components/columns'
-import { useCurrenciesQuery } from '@/hooks/useQuery/useCurrenciesQuery'
 import { Suspense } from 'react'
 import { SkeletonTable } from '@/components/pages/tasks/components/skeleton-section'
-
-export const CryptoTable = () => {
-  const { data: cryptoData, error } = useCurrenciesQuery()
-
-  return <DataTable data={cryptoData?.data ?? []} columns={columns} />
-}
+import { CryptoTable } from './table-section'
 
 export default function CurrencyPage() {
   return (
