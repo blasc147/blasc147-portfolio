@@ -1,3 +1,4 @@
+'use client'
 import { columns } from '@/components/pages/tasks/components/columns'
 import { DataTable } from '@/components/pages/tasks/components/data-table'
 import { useCurrenciesQuery } from '@/hooks/useQuery/useCurrenciesQuery'

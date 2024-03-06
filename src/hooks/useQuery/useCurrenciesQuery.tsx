@@ -6,7 +6,7 @@ export const useCurrenciesQuery = () => {
   return useQuery<ApiResponse, Error>({
     queryKey: ['currencies'],
     queryFn: () => fetchCurrencies(),
-    suspense: true
-    //staleTime: 5 * 1000
+    suspense: true,
+    staleTime: 5 * 1000
   })
 }

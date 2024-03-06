@@ -5,7 +5,6 @@ import { ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from './data-table-column-header'
 import { Currency } from '@/interfaces/currencies'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export const columns: ColumnDef<Currency>[] = [
   {
@@ -16,7 +15,7 @@ export const columns: ColumnDef<Currency>[] = [
     cell: ({ row }) => {
       const src = `https://assets.coincap.io/assets/icons/${(row?.getValue('symbol') as string)?.toLowerCase()}@2x.png`
 
-      return <Image src={src} className='h-6 w-6' alt='' />
+      return <img src={src} className='h-6 w-6' alt='' />
     },
     enableSorting: false,
     enableHiding: false
