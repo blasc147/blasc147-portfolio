@@ -4,7 +4,7 @@ import { CryptoHistoryResponse } from '../../interfaces/currencies'
 
 export const useCurrencyHistoryQuery = (cryptoId: string, interval: string) => {
   return useQuery<CryptoHistoryResponse, Error>({
-    queryKey: ['currency', cryptoId],
+    queryKey: ['currency', cryptoId, interval],
     queryFn: () => fetchCurrencyHistory(cryptoId, interval)
   })
 }

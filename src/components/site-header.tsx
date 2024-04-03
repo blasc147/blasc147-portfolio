@@ -5,6 +5,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
 import { MainNav } from '@/components/main-nav'
 import { ThemeToggle } from '@/components/theme-toggle-dropdown'
+import ButtonAuth from './auth-button'
 
 export function SiteHeader() {
   return (
@@ -45,6 +46,7 @@ export function SiteHeader() {
             <ThemeToggle />
           </nav>
         </div>
+        <ButtonAuth />
       </div>
     </header>
   )

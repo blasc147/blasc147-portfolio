@@ -28,7 +28,7 @@ export const fetchCurrencyHistory = async (
   interval: string
 ): Promise<CryptoHistoryResponse> => {
   const response = await fetch(
-    `https://api.coincap.io/v2/assets/${id}/history?interval=d1`
+    `https://api.coincap.io/v2/assets/${id}/history?interval=${interval}`
   )
   if (!response.ok) {
     throw new Error('History error')

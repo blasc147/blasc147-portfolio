@@ -1,20 +1,18 @@
 'use client'
 import React, { useState } from 'react'
 import CryptoChart from './chart'
-import { useCurrencyDetailQuery } from '@/hooks/useQuery/useCurrencieDetail'
+import { useSession } from 'next-auth/react'
 
 export default function Page({ params }: { params: { id: string } }) {
   const [interval, setInterval] = useState('d1')
+  const { data: session, status } = useSession()
 
-  const {
-    data: cryptoData,
-    isLoading,
-    error
-  } = useCurrencyDetailQuery(params.id)
+  console.log('session', session)
+  console.log('status', status)
 
   return (
-    <div>
-      <h2>{cryptoData?.data?.id}</h2>
+    <>
+      <h2>{params.id}</h2>
       Time interval:
       <select value={interval} onChange={(e) => setInterval(e.target.value)}>
         <option value='m1'>1 minuto</option>
@@ -25,6 +23,6 @@ export default function Page({ params }: { params: { id: string } }) {
         <option value='d1'>1 dia</option>
       </select>
       <CryptoChart cryptoId={params.id} interval={interval} />
-    </div>
+    </>
   )
 }

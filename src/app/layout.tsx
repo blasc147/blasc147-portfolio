@@ -5,8 +5,10 @@ import { fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import { siteConfig } from '@/config/site'
 import { SiteHeader } from '@/components/site-header'
-import { ThemeProvider } from '@/components/theme-provider'
-import { QueryProvider } from '@/components/query-provider'
+import { QueryProvider } from '@/context/query-provider'
+import { ThemeProvider } from '@/context/theme-provider'
+import SessionAuthProvider from '@/context/SessionAuthProvider'
+import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
   title: {
@@ -38,10 +40,16 @@ export default function RootLayout({
       <body className={cn('min-h-screen', fontSans.className)}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <QueryProvider>
-            <div className='relative flex min-h-screen flex-col'>
-              <SiteHeader />
-              <div className='flex-1 justify-center'>{children}</div>
-            </div>
+            <SessionAuthProvider>
+              <div className='relative flex min-h-screen flex-col'>
+                <SiteHeader />
+                <div className='flex-1 justify-center'>
+                  {' '}
+                  <div className='container'>{children}</div>
+                </div>
+                <Toaster />
+              </div>
+            </SessionAuthProvider>
           </QueryProvider>
         </ThemeProvider>
       </body>
